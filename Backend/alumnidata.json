@@ -1,0 +1,48 @@
+[
+  {
+    "name": "Gaurav Rao",
+    "collagename": "GLA University",
+    "collageEmail": "glauniversity12@gmail.com",
+    "email": "gauravrao8@gmail.com",
+    "password": "$2b$10$uG.Hly5D11zAVhom3FWZS./42ZDnhrNvVv0miI7CPkyOGLryAJbH.",
+    "passingyear": "2027",
+    "image": "/images/default-college.png"
+  },
+  {
+    "name": "Gaurav Rao",
+    "collagename": "Chandigarh Univesity",
+    "collageEmail": "chs12@gmail.com",
+    "email": "gauravrao8382@gmail.com",
+    "password": "$2b$10$jUGa/3IKySUq/D2bhAf0be6iCVxbiua2mxJczQsHM1bRS.7rWJ8Cm",
+    "passingyear": "2027",
+    "image": "/images/default-college.png"
+  },
+  {},
+  {
+    "name": "ankit",
+    "collagename": "GLA University",
+    "collageEmail": "glauniversity12@gmail.com",
+    "email": "ankit@1gmail.com",
+    "password": "$2b$10$xBQiV.y3SgTSFyeFgPf3nOu9Ehs7aCV3LCaxyjlkoTfzrbLoe5YEi",
+    "passingyear": "2022",
+    "image": "/images/default-college.png"
+  },
+  {
+    "name": "rohan",
+    "collagename": "GLA University",
+    "collageEmail": "glauniversity12@gmail.com",
+    "email": "rohan@1gmail.com",
+    "password": "$2b$10$RbNBeRHPUM71JJeHYuJzGO.jpzKlu8icmC7mFVTwVzOsYXQhN5gOy",
+    "passingyear": "2020",
+    "image": "/images/default-college.png"
+  },
+  {
+    "name": "Ayush",
+    "collagename": "LPU University",
+    "collageEmail": "lpu@gmail.com",
+    "email": "ayush@gmail.com",
+    "password": "$2b$10$9b8o/afEko97.gzZyYVZROQBtPHUWbZLURQM9BSrNgOs9hxwx/cbC",
+    "passingyear": "2027",
+    "image": "/images/default-college.png"
+  }
+]

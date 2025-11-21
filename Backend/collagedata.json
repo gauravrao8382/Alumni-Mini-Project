@@ -1,0 +1,42 @@
+[
+  {
+    "id": "COL-85202",
+    "name": "GLA University",
+    "email": "glauniversity12@gmail.com",
+    "password": "$2b$10$FfHnkrJ0NJjyqeqijswDbuztC7J.t//4saS9WxxvQWuQNjk/cRrOq",
+    "address": "Mathura, UP",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbkAWv33TAJ3SvPFni5qaPcVksmg7p4CSDOw&s"
+  },
+  {
+    "id": "COL-24629",
+    "name": "Rao",
+    "email": "gauravrao8382@gmail.com",
+    "password": "$2b$10$07A4eiEaV6qy2eDQs12WL.NgfZpGWg/HNmoFLCeDStpeEntwKeWs.",
+    "address": "Semara Hardo Patti, Tamkuhi Raj",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbkAWv33TAJ3SvPFni5qaPcVksmg7p4CSDOw&s"
+  },
+  {
+    "id": "COL-35118",
+    "name": "LPU",
+    "email": "lpu12@gmai.com",
+    "password": "$2b$10$sXYcei.sxNWjNuQX0B/Eu.B/6ER7X/.HFPxc7jqs6Vojf5J964PUG",
+    "address": "Punjab",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbkAWv33TAJ3SvPFni5qaPcVksmg7p4CSDOw&s"
+  },
+  {
+    "id": "COL-53546",
+    "name": "Chandigarh University",
+    "email": "chs12@gmail.com",
+    "password": "$2b$10$gR8soyKugd4c.vaYh1yes.ef3rKGL29F60XPeWot6Oyr.U9JKK2fq",
+    "address": "Punjab",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbkAWv33TAJ3SvPFni5qaPcVksmg7p4CSDOw&s"
+  },
+  {
+    "id": "COL-65269",
+    "name": "LPU University",
+    "email": "lpu@gmail.com",
+    "password": "$2b$10$IlpXQeCFVc1DXmj9TR8gneyECxpYaSrmC8CDybQSAAqyUSDxGU6NG",
+    "address": "Punjab",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbkAWv33TAJ3SvPFni5qaPcVksmg7p4CSDOw&s"
+  }
+]
