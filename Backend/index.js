@@ -14,6 +14,7 @@ const { console } = require('inspector');
 const collageDataPath = path.join(__dirname, './collagedata.json');
 const alumniDataPath = path.join(__dirname,'./alumnidata.json');
 const eventsDataPath = path.join(__dirname,'./eventsdata.json');
+const jobDataPath = path.join(__dirname,'./jobData.json');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -166,6 +167,42 @@ app.post("/search",(req,res)=>{
     res.render("search",{result,email});
 })
 
+app.get("/jobs",(req,res)=>{
+    const email=req.query.email;
+    console.log("email");
+    let jobs = JSON.parse(fs.readFileSync(jobDataPath, 'utf8'));
+    jobs=jobs.filter((j)=> j.email === email)
+    console.log(jobs.length);
+    res.render("jobs",{jobs,email});
+})
+
+app.get("/jobs/new",(req,res)=>{
+    const email=req.query.email;
+    res.render("createjob",{email});
+})
+
+app.post("/jobs/new",(req,res)=>{
+    const email=req.query.email;
+    const {title, skills, package, experience, description} = req.body;
+    let jobs = JSON.parse(fs.readFileSync(jobDataPath, 'utf8'));
+    let id=uuidv4();
+    const newJob={
+        email,
+        title,
+        skills,
+        package,
+        experience,
+        description,
+    }
+    jobs.push(newJob);
+    fs.writeFileSync(jobDataPath, JSON.stringify(jobs, null, 2));
+    return res.send(`
+        <script>
+            alert("Job Added Successfully!");
+            window.location.href="/jobs?email=${email}";
+        </script>
+    `);
+})
 
 
 
