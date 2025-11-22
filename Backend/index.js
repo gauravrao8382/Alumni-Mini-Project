@@ -169,7 +169,6 @@ app.post("/search",(req,res)=>{
 
 app.get("/jobs",(req,res)=>{
     const email=req.query.email;
-    console.log("email");
     let jobs = JSON.parse(fs.readFileSync(jobDataPath, 'utf8'));
     jobs=jobs.filter((j)=> j.email === email)
     console.log(jobs.length);
