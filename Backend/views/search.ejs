@@ -257,8 +257,8 @@
             </form>
         </div>
         
-        <% for (let alumni of alumniList){%>
-            <% if(alumni.collageEmail === email) {%>
+        <% if(result.length > 0) {%>
+        <% for (let alumni of result){%>
         <div id="searchResults" class="search-results-list">
             <div class="alumni">
                 <p>Name: <%= alumni.name %></p>
@@ -266,7 +266,8 @@
                 <p>Email: <%=alumni.email%></p>
             </div>
         </div>
-        <%}}%>
+        <%}%>
+        <%}%>
     </div>
 </div>
 
