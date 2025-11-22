@@ -9,6 +9,7 @@ const methodOverride = require("method-override");
 app.use(methodOverride("_method"));
 
 const { v4: uuidv4 } = require("uuid");
+const { console } = require('inspector');
 
 const collageDataPath = path.join(__dirname, './collagedata.json');
 const alumniDataPath = path.join(__dirname,'./alumnidata.json');
@@ -146,8 +147,23 @@ app.delete('/events/:id',(req,res)=>{
 
 app.get("/search",(req,res)=>{
     const email=req.query.email;
+    const result=0;
+    console.log("Hello I am here");
+    res.render("search",{result,email});
+})
+
+app.post("/search",(req,res)=>{
+    const email=req.query.email;
+    const input=req.body.name.toLowerCase();
     let alumniList = JSON.parse(fs.readFileSync(alumniDataPath, 'utf8'));
-    res.render("search",{email,alumniList});
+    alumniList=alumniList.filter((a)=>a.collageEmail===email);
+    const result=alumniList.filter(
+        (a)=>
+            a.name.toLowerCase()===input || 
+            a.passingyear.toLowerCase()===input || 
+            a.email.toLowerCase()===input
+        )
+    res.render("search",{result,email});
 })
 
 
