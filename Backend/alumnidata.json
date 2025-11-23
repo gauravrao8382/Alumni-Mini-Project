@@ -44,5 +44,14 @@
     "password": "$2b$10$9b8o/afEko97.gzZyYVZROQBtPHUWbZLURQM9BSrNgOs9hxwx/cbC",
     "passingyear": "2027",
     "image": "/images/default-college.png"
+  },
+  {
+    "name": "nandini gupta",
+    "collagename": "gla",
+    "collageEmail": "glauniversity12@gmail.com",
+    "email": "glauniversity12@gmail.com",
+    "password": "$2b$10$exjL1lUEWIOsaRmZeD621eVK0d5kdIy088/y2NMmMV1GC1699ProC",
+    "passingyear": "2027",
+    "image": "/images/default-college.png"
   }
 ]
