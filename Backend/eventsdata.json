@@ -1,15 +1,37 @@
 [
   {
-    "email": "glauniversity12@gmail.com",
-    "eventName": "Dancing Comptetion",
-    "eventDate": "2025-11-21",
-    "eventDesc": "guhi;jklhkcgo'jlhkcgh"
+    "email": "glauniversity@gmail.com",
+    "id": "3bb3e018-465a-4817-a61c-dbb606c66895",
+    "eventName": "Tech Fest",
+    "eventDate": "2025-12-02",
+    "eventDesc": "A college-wide event showcasing technical projects, coding competitions, robotics challenges, and expert sessions from industry professionals."
   },
   {
-    "email": "lpu@gmail.com",
-    "id": "797d0030-2586-4f05-80eb-da6f27e72f13",
-    "eventName": "vjh;lkjlkhk",
-    "eventDate": "2025-11-27",
-    "eventDesc": "iytudykg;j'k;lgkyj"
+    "email": "glauniversity@gmail.com",
+    "id": "352ead0b-4312-4bca-9daa-e54c413892eb",
+    "eventName": "Cultural Day",
+    "eventDate": "2025-11-29",
+    "eventDesc": "A celebration of diverse cultures with dance, music, traditional food stalls, fashion shows, and cultural performances."
+  },
+  {
+    "email": "glauniversity@gmail.com",
+    "id": "f49409e8-fc41-403a-a1b0-143504547a74",
+    "eventName": "Sports Meet",
+    "eventDate": "2025-12-06",
+    "eventDesc": "Annual sports tournament including athletics, cricket, football, badminton, kabaddi, and fun competitive games for students."
+  },
+  {
+    "email": "glauniversity@gmail.com",
+    "id": "5c1dd9ca-2386-4783-8e06-3536e2e7b52d",
+    "eventName": "Alumni Meet",
+    "eventDate": "2025-12-03",
+    "eventDesc": "A gathering where former students connect with current students, share experiences, and explore networking and career opportunities."
+  },
+  {
+    "email": "glauniversity@gmail.com",
+    "id": "2c4f36eb-e726-4fc4-afcb-502f6bbcd59f",
+    "eventName": "Seminar / Guest Lecture",
+    "eventDate": "2025-12-09",
+    "eventDesc": "Expert speakers from industry or academia share knowledge on trending topics like AI, career development, entrepreneurship, etc."
   }
 ]
