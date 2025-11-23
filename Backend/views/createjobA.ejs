@@ -136,7 +136,7 @@
     <h1>Create New Job</h1>
 
     <div class="form-container">
-        <form action="/jobs/new?email=<%=email%>" method="post">
+        <form action="/jobsA/new?email=<%=email%>&collageEmail=<%=collageEmail%>" method="post">
 
             <label for="title">Job Title</label>
             <input type="text" name="title" required>
@@ -158,7 +158,7 @@
     </div>
 
     <div class="back">
-        <a href="/jobs?email=<%=email%>">⬅ Back to Jobs</a>
+        <a href="/jobsA?email=<%=email%>&collageEmail=<%=collageEmail%>">⬅ Back to Jobs</a>
     </div>
 
 </body>

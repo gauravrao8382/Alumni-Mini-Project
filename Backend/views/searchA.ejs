@@ -270,7 +270,7 @@
         <h2>🔍 Search Students (Alumni Directory)</h2>
         
         <div class="search-box-flex">
-            <form action="/search?email=<%=email%>" method="post">
+            <form action="/searchA?email=<%=email%>&collageEmail=<%=collageEmail%>" method="post">
                 <input type="text" id="name" placeholder="Enter Name, Batch (e.g., CSE 2024), or Email" name="name">
                 <button type="submit">Search</button>
             </form>
@@ -288,8 +288,8 @@
         <%}%>
         <%}%>
     </div>
-    <div class="back">
-            <a href="/collagedashboard?email=<%=email%>">⬅ Back to dashboard</a>
+        <div class="back">
+            <a href="/alumnidashboard?email=<%=email%>">⬅ Back to Jobs</a>
         </div>
 </div>
 
