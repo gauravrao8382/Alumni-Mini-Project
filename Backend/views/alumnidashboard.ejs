@@ -268,9 +268,9 @@
 <div class="header">
     <div><%= collagename %> <br> Batch: <%= passingyear %> <br> Collage email: <%= collageEmail %></div>
     <div class="header-left">
-        <a href="/search?email=<%= collageEmail %>">Search Students</a>
-        <a href="/events?email=<%= collageEmail %>">Events</a>
-        <a href="/jobs?email=<%=collageEmail %>">Posted Jobs</a>
+        <a href="/searchA?collageEmail=<%=collageEmail%>&email=<%=email %>">Search Students</a>
+        <a href="/eventsA?collageEmail=<%=collageEmail%>&email=<%=email %>">Events</a>
+        <a href="/jobsA?collageEmail=<%=collageEmail%>&email=<%=email%>">Posted Jobs</a>
         <button onclick="window.location.href='/AlumniLogOut'">Log out</button>
     </div>
 </div>

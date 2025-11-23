@@ -173,12 +173,12 @@
     <h1>All Job Opportunities</h1>
 
     <div class="top-btn">
-        <a href="/jobs/new?email=<%=email%>">+ Create New Job</a>
+        <a href="/jobsA/new?email=<%=email%>&collageEmail=<%=collageEmail%>">+ Create New Job</a>
     </div>
  
     <div id="jobContainer">
         <% for(let job of jobs){ %>
-            <% if(email === job.email){ %>
+            <% if(collageEmail === job.email){ %>
 
             <div class="job-card">
                 <h3><%= job.title %></h3>
@@ -201,7 +201,7 @@
             <% } %>
         <% } %>
         <div class="back">
-            <a href="/collagedashboard?email=<%=email%>">⬅ Back to dashboard</a>
+            <a  href="/alumnidashboard?email=<%=email%>">⬅ Back to dashboard</a>
         </div>
     </div>
 
