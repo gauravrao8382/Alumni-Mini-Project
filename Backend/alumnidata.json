@@ -44,5 +44,14 @@
     "password": "$2b$10$9b8o/afEko97.gzZyYVZROQBtPHUWbZLURQM9BSrNgOs9hxwx/cbC",
     "passingyear": "2027",
     "image": "/images/default-college.png"
+  },
+  {
+    "name": "Ashi singh",
+    "collagename": "GLA UNIVERSITY",
+    "collageEmail": "glauniversity12@gmail.com",
+    "email": "ashi.singh_cs23@gla.ac.in",
+    "password": "$2b$10$UQcace5l9hiWedkXzAtAYOeMlx6eFV74JY3RnlOmymBsDwfOUWodq",
+    "passingyear": "2027",
+    "image": "/images/default-college.png"
   }
 ]
