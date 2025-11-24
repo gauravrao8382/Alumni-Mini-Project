@@ -247,3 +247,94 @@ app.get('/alumnidashboard', (req, res) => {
         image: user.image
     });
 });
+// ---------------- JOBS SECTION -------------------------
+
+
+// Jobs JSON file
+const jobsDataPath = path.join(__dirname, './jobs.json');
+
+// Get all jobs
+app.get('/jobs', (req, res) => {
+    let jobs = JSON.parse(fs.readFileSync(jobsDataPath, 'utf8'));
+    res.render('jobs', { jobs });
+});
+
+// Add new job
+app.post('/jobs', (req, res) => {
+    let { title, company, salary, type, description } = req.body;
+
+    let jobs = JSON.parse(fs.readFileSync(jobsDataPath, 'utf8'));
+    let id = uuidv4();
+
+    const newJob = {
+        id,
+        title,
+        company,
+        salary,
+        type,
+        description
+    };
+
+    jobs.push(newJob);
+    fs.writeFileSync(jobsDataPath, JSON.stringify(jobs, null, 2));
+
+    res.send(`
+        <script>
+            alert("Job Added Successfully!");
+            window.location.href="/jobs";
+        </script>
+    `);
+});
+
+// Delete job
+app.delete('/jobs/:id', (req, res) => {
+    const { id } = req.params;
+
+    let jobs = JSON.parse(fs.readFileSync(jobsDataPath, 'utf8'));
+    jobs = jobs.filter(job => job.id !== id);
+
+    fs.writeFileSync(jobsDataPath, JSON.stringify(jobs, null, 2));
+
+    res.send(`
+        <script>
+            alert("Job Deleted!");
+            window.location.href="/jobs";
+        </script>
+    `);
+});
+
+// Edit job (GET form)
+app.get('/jobs/edit/:id', (req, res) => {
+    const { id } = req.params;
+    let jobs = JSON.parse(fs.readFileSync(jobsDataPath, 'utf8'));
+    const job = jobs.find(j => j.id === id);
+
+    res.render('editjob', { job });
+});
+
+// Edit job (POST form)
+app.post('/jobs/edit/:id', (req, res) => {
+    const { id } = req.params;
+    const { title, company, salary, type, description } = req.body;
+
+    let jobs = JSON.parse(fs.readFileSync(jobsDataPath, 'utf8'));
+    const jobIndex = jobs.findIndex(j => j.id === id);
+
+    jobs[jobIndex] = {
+        id,
+        title,
+        company,
+        salary,
+        type,
+        description
+    };
+
+    fs.writeFileSync(jobsDataPath, JSON.stringify(jobs, null, 2));
+
+    res.send(`
+        <script>
+            alert("Job Updated Successfully!");
+            window.location.href="/jobs";
+        </script>
+    `);
+});

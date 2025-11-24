@@ -44,5 +44,14 @@
     "password": "$2b$10$9b8o/afEko97.gzZyYVZROQBtPHUWbZLURQM9BSrNgOs9hxwx/cbC",
     "passingyear": "2027",
     "image": "/images/default-college.png"
+  },
+  {
+    "name": "Ayushi Jain",
+    "collagename": "GLA University",
+    "collageEmail": "ayushijain@gmail.com",
+    "email": "ayushijainj095@gmail.com",
+    "password": "$2b$10$TAnaW0sodnKsG58F9CKwu.xsNDRAZzSQG8Xi8V.7qrRRvQUE34pcC",
+    "passingyear": "2027",
+    "image": "/images/default-college.png"
   }
 ]

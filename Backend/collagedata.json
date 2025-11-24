@@ -38,5 +38,13 @@
     "password": "$2b$10$IlpXQeCFVc1DXmj9TR8gneyECxpYaSrmC8CDybQSAAqyUSDxGU6NG",
     "address": "Punjab",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbkAWv33TAJ3SvPFni5qaPcVksmg7p4CSDOw&s"
+  },
+  {
+    "id": "COL-75050",
+    "name": "Ayushi Jain",
+    "email": "ayushijain@gmail.com",
+    "password": "$2b$10$hEVm/ACw3cUBdfeaHrd7mOC5o98D2XVZIY123v4gkiu.M6YH2mhky",
+    "address": "mathura",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbkAWv33TAJ3SvPFni5qaPcVksmg7p4CSDOw&s"
   }
 ]
