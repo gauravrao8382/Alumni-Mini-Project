@@ -238,7 +238,7 @@ app.get('/AlumniLogOut', (req, res) => {
 
 app.post('/AlumniRegister', async (req, res) => {
     const { name, collageEmail, collagename
-        , email, password, passingyear } = req.body;
+        , email, password, passingyear, course } = req.body;
 
     let collages = JSON.parse(fs.readFileSync(collageDataPath, 'utf8'));
     
@@ -269,6 +269,7 @@ app.post('/AlumniRegister', async (req, res) => {
         email,
         password: hashedPass,
         passingyear,
+        course,
         image: "/images/default-college.png" // default image
     };
 
@@ -317,7 +318,8 @@ app.get('/alumnidashboard', (req, res) => {
         collageEmail:user.collageEmail,
         email: user.email,
         passingyear: user.passingyear,
-        image: user.image
+        image: user.image,
+        course:user.course
     });
 });
 

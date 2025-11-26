@@ -17,6 +17,15 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             min-height: 100vh;
             position: relative;
+            animation: fadeInBg 20s infinite alternate;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        @keyframes fadeInBg {
+            0% { background-image: url('gla.webp'); }
+            50% { background-image: url('h-about.jpg'); }
+            100% { background-image: url('gla.webp'); }
         }
 
         body::before {
@@ -266,7 +275,7 @@
 
 <!-- HEADER -->
 <div class="header">
-    <div><%= collagename %> <br> Batch: <%= passingyear %> <br> Collage email: <%= collageEmail %></div>
+    <div><%= collagename %></div>
     <div class="header-left">
         <a href="/searchA?collageEmail=<%=collageEmail%>&email=<%=email %>">Search Students</a>
         <a href="/eventsA?collageEmail=<%=collageEmail%>&email=<%=email %>">Events</a>
@@ -283,6 +292,7 @@
         <div class="info-details">
             <p><b>Name:</b> <%= name %></p>
             <p><b>Email:</b> <%= email %></p>
+            <p><b>Course:</b> <%= course %></p>
             <p><b>Passing Year:</b> <%= passingyear %></p>
         </div>
     </div>
@@ -306,21 +316,6 @@
                 <div class="job-item"><b>Frontend Developer</b> — CSE 2024</div>
                 <div class="job-item"><b>Data Analyst</b> — IT 2023</div>
             </div>
-
-            <h2>Create Job</h2>
-            <input type="text" id="jobTitle" placeholder="Job Title">
-            <input type="text" id="jobBatch" placeholder="Batch (e.g., CSE 2024)">
-            <button onclick="createJob()">Create Job</button>
-        </div>
-
-        <!-- SEARCH STUDENT -->
-        <div class="card">
-            <h2>Search Student</h2>
-            <div class="search-box">
-                <input type="text" id="searchText" placeholder="Search by name or batch">
-                <button onclick="searchStudent()">Search</button>
-            </div>
-            <div id="searchResults"></div>
         </div>
 
     </div>
