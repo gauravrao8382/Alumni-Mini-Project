@@ -147,9 +147,30 @@ app.delete('/events/:id',(req,res)=>{
 app.get("/search",(req,res)=>{
     const email=req.query.email;
     let alumniList = JSON.parse(fs.readFileSync(alumniDataPath, 'utf8'));
-    res.render("search",{email,alumniList});
+    let collages = JSON.parse(fs.readFileSync(collageDataPath, 'utf8'));
+    const college = collages.find(c => c.email === email);
+    const name = college ? college.name : "College";
+    const address = college ? college.address : "";
+    res.render("search",{email,alumniList,name,address});
 })
 
+
+// Alumni Profile Page
+app.get('/alumni/:alumniEmail', (req, res) => {
+    const alumniEmail = req.params.alumniEmail;
+    let alumniList = JSON.parse(fs.readFileSync(alumniDataPath, 'utf8'));
+    const person = alumniList.find(a => a && a.email === alumniEmail);
+    if (!person) return res.status(404).send("Alumni not found");
+
+    let collages = JSON.parse(fs.readFileSync(collageDataPath, 'utf8'));
+    const college = collages.find(c => c.email === person.collageEmail);
+
+    const name = college ? college.name : "College";
+    const address = college ? college.address : "";
+    const email = college ? college.email : "";
+
+    res.render('alumni_profile', { person, name, address, email });
+});
 
 
 

@@ -1,0 +1,13 @@
+/* Minimal profile page styling */
+.profile { max-width: 1000px; margin: 0 auto; padding: 20px; }
+.profile-card { display: grid; grid-template-columns: 160px 1fr; gap: 24px; background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+.profile-card .avatar { width: 160px; height: 160px; border-radius: 12px; object-fit: cover; }
+.profile-main h2 { margin: 0 0 8px; }
+.profile-main .tags { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0 16px; }
+.profile-main .tags span { background: #eef3ff; color: #2b4ae0; border: 1px solid #d9e4ff; border-radius: 999px; padding: 4px 10px; font-size: 12px; }
+.links p, .employment p { margin: 6px 0; }
+.profile-details { margin-top: 20px; background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+.profile-details ul { list-style: none; padding: 0; margin: 0 0 16px; }
+.profile-details li { margin: 8px 0; }
+.btn { display: inline-block; padding: 10px 14px; background: #2b4ae0; color: #fff; text-decoration: none; border-radius: 8px; }
+.btn:hover { background: #223cc0; }

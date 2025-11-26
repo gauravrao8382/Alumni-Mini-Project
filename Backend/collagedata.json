@@ -38,5 +38,13 @@
     "password": "$2b$10$IlpXQeCFVc1DXmj9TR8gneyECxpYaSrmC8CDybQSAAqyUSDxGU6NG",
     "address": "Punjab",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbkAWv33TAJ3SvPFni5qaPcVksmg7p4CSDOw&s"
+  },
+  {
+    "id": "COL-39114",
+    "name": "GLA UNIVERSITY",
+    "email": "ayushshuklaa11@gmail.com",
+    "password": "$2b$10$IGoZQplpaAY9hjWKHBqPXuh/IgsIQJ5/VG/4/Gr6c5yO9NWS82EuW",
+    "address": "Mathura",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbkAWv33TAJ3SvPFni5qaPcVksmg7p4CSDOw&s"
   }
 ]

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alumni Profile</title>
+  <link rel="stylesheet" href="/assets/css/search-shared.css" />
+  <link rel="stylesheet" href="/assets/css/profile.css" />
+</head>
+<body>
+  <div class="header">
+    <div><%= typeof name !== 'undefined' ? name : '' %> <br> <%= typeof address !== 'undefined' ? address : '' %></div>
+    <div class="header-left">
+      <a href="/search?email=<%=email%>">Search students</a>
+      <a href="/events?email=<%=email%>">Events</a>
+      <a href="/jobs">Posted jobs</a>
+      <button onclick="window.location.href='/LogOutCollage'">Log out</button>
+    </div>
+  </div>
+
+  <main class="page">
+    <header class="page-header">
+      <h1>Alumni Profile</h1>
+      <p>Detailed information for <strong><%= person.name %></strong>.</p>
+    </header>
+
+    <section class="profile">
+      <div class="profile-card">
+        <img class="avatar" src="<%= person.image || '/images/default-college.png' %>" alt="<%= person.name %>" />
+        <div class="profile-main">
+          <h2><%= person.name %></h2>
+          <div class="tags">
+            <span><%= person.course || 'N/A' %></span>
+            <span><%= person.dept || 'N/A' %></span>
+            <span><%= person.passingyear || '—' %></span>
+          </div>
+
+          <div class="links">
+            <p>
+              LinkedIn:
+              <% if (person.linkedin) { %>
+                <a href="<%= person.linkedin %>" target="_blank" rel="noopener">View Profile</a>
+              <% } else { %>
+                <span>Not provided</span>
+              <% } %>
+            </p>
+            <p>
+              Portfolio/Website:
+              <% if (person.portfolio) { %>
+                <a href="<%= person.portfolio %>" target="_blank" rel="noopener">Visit Site</a>
+              <% } else { %>
+                <span>Not provided</span>
+              <% } %>
+            </p>
+          </div>
+
+          <div class="employment">
+            <h3>Current Employment</h3>
+            <p>Company: <strong><%= person.company || 'Not provided' %></strong></p>
+            <p>Role: <strong><%= person.role || 'Not provided' %></strong></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-details">
+        <h3>Additional Details</h3>
+        <ul>
+          <li>Roll Number: <strong><%= person.roll || 'N/A' %></strong></li>
+          <li>Email: <strong><%= person.email %></strong></li>
+          <li>Gender: <strong><%= person.gender || 'N/A' %></strong></li>
+          <li>Location: <strong><%= (person.city || '') + (person.city && person.state ? ', ' : '') + (person.state || '') %></strong></li>
+          <li>College: <strong><%= person.collagename || 'N/A' %></strong></li>
+        </ul>
+        <div class="actions">
+          <a class="btn" href="/search?email=<%=email%>">Back to Search</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><p>© 2025 Alumni Management System</p></footer>
+</body>
+</html>

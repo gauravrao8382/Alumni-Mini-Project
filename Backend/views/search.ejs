@@ -1,275 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Students</title>
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
-        
-        body{
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color:#333;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            min-height: 100vh;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            opacity: 0.3;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .header{
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            padding:25px 40px;
-            background:rgba(26, 32, 44, 0.95);
-            backdrop-filter: blur(10px);
-            color:white;
-            font-size:18px;
-            font-weight:600;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-            position: relative;
-            z-index: 10;
-        }
-
-        .header-left{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap:15px;
-        }
-
-        .header-left button{
-            color:#1a202c; 
-            background: linear-gradient(135deg, #ffffff 0%, #f7fafc 100%);
-            padding:10px 20px;
-            border:none;
-            border-radius:10px;
-            cursor:pointer;
-            font-weight:600;
-            font-size:14px;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .header-left button:hover{
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .header-left a{
-            text-decoration: none;
-            font-size: 14px;
-            color: white;
-            font-weight: 500;
-            padding:8px 16px;
-            border-radius:8px;
-            transition: all 0.3s ease;
-        }
-
-        .header-left a:hover{
-            background:rgba(255,255,255,0.1);
-            transform: translateY(-2px);
-        }
-
-        .container{
-            display:flex;
-            flex-direction:column;
-            padding:30px 40px;
-            gap:30px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .card{
-            background:rgba(255, 255, 255, 0.98);
-            border-radius:20px;
-            padding:30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover{
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
-        h2{
-            margin-bottom:25px;
-            border-bottom:3px solid #667eea;
-            padding-bottom:12px;
-            color:#1a202c;
-            font-size:1.8rem;
-            font-weight:700;
-        }
-
-        input{
-            width:100%;
-            padding:14px 16px;
-            margin:10px 0;
-            border:2px solid #e2e8f0;
-            border-radius:12px;
-            font-size:15px;
-            transition: all 0.3s ease;
-            background: #f7fafc;
-            color: #2d3748;
-            font-family: inherit;
-        }
-
-        input:focus{
-            outline: none;
-            border-color: #667eea;
-            background: white;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-            transform: translateY(-2px);
-        }
-
-        input::placeholder{
-            color: #a0aec0;
-        }
-
-        button{
-            padding:14px 24px;
-            width:100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color:white;
-            border:none;
-            border-radius:12px;
-            cursor:pointer;
-            margin-top:10px;
-            font-size:16px;
-            font-weight:600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        button:hover{
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-        }
-
-        button:active{
-            transform: translateY(0);
-        }
-
-        .student-item{
-            background:linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-            padding:16px;
-            border-left:4px solid #667eea;
-            margin-bottom:12px;
-            border-radius:10px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .student-item:hover{
-            transform: translateX(5px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            background: white;
-        }
-
-        .search-box-flex{
-            display: flex;
-            gap: 12px;
-        }
-
-        .search-box-flex input{
-            margin-top: 0;
-            flex-grow: 1;
-        }
-
-        .search-box-flex button{
-            width: auto;
-            min-width: 120px;
-            margin-top: 0;
-        }
-
-        .search-results-list{
-            margin-top: 25px;
-        }
-
-        .search-results-list h3{
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-
-        .search-results-list p{
-            color: #4a5568;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        .student-detail-item {
-            margin-bottom: 10px;
-            color: #2d3748;
-        }
-        .alumni{
-            display: inline-block;
-            border: 1px solid rgb(81, 106, 216);
-            border-radius: 12px;
-            padding: 15px;
-        }
-        @media (max-width: 768px) {
-            .header{
-                flex-direction: column;
-                gap:15px;
-                text-align: center;
-            }
-            .search-box-flex{
-                flex-direction: column;
-            }
-            .search-box-flex button{
-                width: 100%;
-            }
-        }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Search • Alumni Directory</title>
+    <link rel="stylesheet" href="/assets/css/search-shared.css" />
 </head>
 <body>
-
-
-
-<div class="container">
-
-    <div class="card">
-        <h2>🔍 Search Students (Alumni Directory)</h2>
-        
-        <div class="search-box-flex">
-            <form action="/search?email=<%=email%>" method="post">
-                <input type="text" id="name" placeholder="Enter Name, Batch (e.g., CSE 2024), or Email" name="name">
-                <button type="submit">Search</button>
-            </form>
+    <!-- Header replicated from dashboard -->
+    <div class="header">
+        <div><%= typeof name !== 'undefined' ? name : '' %> <br> <%= typeof address !== 'undefined' ? address : '' %></div>
+        <div class="header-left">
+            <a href="/search?email=<%=email%>">Search students</a>
+            <a href="/events?email=<%=email%>">Events</a>
+            <a href="/jobs">Posted jobs</a>
+            <button onclick="window.location.href='/LogOutCollage'">Log out</button>
         </div>
-        
-        <% for (let alumni of alumniList){%>
-            <% if(alumni.collageEmail === email) {%>
-        <div id="searchResults" class="search-results-list">
-            <div class="alumni">
-                <p>Name: <%= alumni.name %></p>
-                <p>Passing year: <%= alumni.passingyear %></p>
-                <p>Email: <%=alumni.email%></p>
-            </div>
-        </div>
-        <%}}%>
     </div>
-</div>
 
+    <main class="page">
+        <header class="page-header">
+            <h1 id="pageTitle">Admin Search</h1>
+            <p>Use smart filters to find alumni in your directory.</p>
+        </header>
 
+        <section class="layout">
+            <aside class="filters" id="filtersSidebar">
+                <div class="filter-group">
+                    <h3>Year</h3>
+                    <div class="segmented">
+                        <label>
+                            <input type="radio" name="yearType" value="passing" checked>
+                            <span>Passing Year</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="yearType" value="admission">
+                            <span>Admission Year</span>
+                        </label>
+                    </div>
+                    <div class="field">
+                        <select id="yearSelect">
+                            <option value="">Any Year</option>
+                            <option>2025</option>
+                            <option>2024</option>
+                            <option>2023</option>
+                            <option>2022</option>
+                            <option>2021</option>
+                            <option>2020</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Batch</h3>
+                    <div class="field">
+                        <select id="batchSelect">
+                            <option value="">Any Batch</option>
+                            <option>2018–2022</option>
+                            <option>2019–2023</option>
+                            <option>2020–2024</option>
+                            <option>2021–2025</option>
+                            <option>2022–2026</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Course</h3>
+                    <div class="chips" id="courseChips">
+                        <button data-value="B.Tech">B.Tech</button>
+                        <button data-value="BCA">BCA</button>
+                        <button data-value="MCA">MCA</button>
+                        <button data-value="M.Tech">M.Tech</button>
+                        <button data-value="MBA">MBA</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Department</h3>
+                    <div class="chips" id="deptChips">
+                        <button data-value="CSE">CSE</button>
+                        <button data-value="ECE">ECE</button>
+                        <button data-value="EEE">EEE</button>
+                        <button data-value="ME">ME</button>
+                        <button data-value="IT">IT</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Gender</h3>
+                    <div class="chips" id="genderChips">
+                        <button data-value="Male">Male</button>
+                        <button data-value="Female">Female</button>
+                        <button data-value="Other">Other</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Location</h3>
+                    <div class="field"><input type="text" id="cityInput" placeholder="City" /></div>
+                    <div class="field"><input type="text" id="stateInput" placeholder="State" /></div>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Search</h3>
+                    <div class="field"><input type="text" id="nameInput" placeholder="Name" /></div>
+                    <div class="field"><input type="email" id="emailInput" placeholder="Email" /></div>
+                    <div class="field"><input type="text" id="rollInput" placeholder="Roll Number" /></div>
+                </div>
+
+                <div class="actions">
+                    <button class="primary" id="applyFiltersBtn">Apply Filters</button>
+                    <button class="ghost" id="resetFiltersBtn">Reset</button>
+                </div>
+            </aside>
+
+            <section class="results">
+                <div id="resultsGrid" class="grid"></div>
+                <div id="noResults" class="no-results" aria-live="polite">No Results Found</div>
+            </section>
+        </section>
+    </main>
+
+    <!-- Mobile Drawer for Filters -->
+    <div class="drawer" id="filtersDrawer" aria-hidden="true">
+        <div class="drawer-content">
+            <div class="drawer-header">
+                <h2>Filters</h2>
+                <button class="icon" aria-label="Close" id="closeFiltersBtn">✕</button>
+            </div>
+            <div class="drawer-body"></div>
+        </div>
+        <div class="drawer-backdrop" id="drawerBackdrop"></div>
+    </div>
+
+    <footer class="footer"><p>© 2025 Alumni Management System</p></footer>
+
+    <!-- Inject server data for shared search -->
+    <script>
+        const email = "<%= email %>";
+        const serverAlumni = <%- JSON.stringify(alumniList.filter(a => a && a.collageEmail === email)) %>;
+        window.initialPeople = serverAlumni.map(a => ({
+            id: a.email,
+            name: a.name || 'Unknown',
+            email: a.email || '',
+            roll: a.roll || '',
+            course: a.course || 'N/A',
+            dept: a.dept || 'N/A',
+            batch: a.batch || (a.passingyear ? `${Number(a.passingyear)-4}–${a.passingyear}` : ''),
+            yearType: 'passing',
+            year: a.passingyear ? Number(a.passingyear) : null,
+            gender: a.gender || 'Other',
+            city: a.city || '',
+            state: a.state || '',
+            avatar: a.image || '/images/default-college.png',
+            linkedin: a.linkedin || '',
+            portfolio: a.portfolio || '',
+            company: a.company || '',
+            role: a.role || ''
+        }));
+    </script>
+    <script src="/assets/js/search-shared.js"></script>
 </body>
 </html>
