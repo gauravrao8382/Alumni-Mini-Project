@@ -632,18 +632,8 @@
 </head>
 <body>
 
-    <div class="header">
-        <div class="header-left">
-            <h2 style="margin: 0; font-size: 1.5rem;">🎓 Alumni Portal</h2>
-        </div>
-        <div class="header-left">
-            <a href="/">Home</a>
-            <a href="/events">Events</a>
-        </div>
-    </div>
-
     <div class="back-btn-container">
-        <a href="/" class="btn-back">← Back to Home</a>
+        <a href="/collagedashboard?email=<%=email%>" class="btn-back">← Back to dashboard</a>
     </div>
 
     <h1>🎉 All College Events</h1>
@@ -739,7 +729,7 @@
                     </div>
 
                     <div class="event-actions">
-                        <form action="/events/<%=event.id%>?_method=DELETE" method="post" style="flex: 1; margin: 0;">
+                        <form action="/events/<%=event.id%>?_method=DELETE&email=<%=email%>" method="post" style="flex: 1; margin: 0;">
                             <button type="submit" class="btn-delete">🗑️ Delete Event</button>
                         </form>
                     </div>

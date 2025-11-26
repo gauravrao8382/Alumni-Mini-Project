@@ -157,12 +157,14 @@ app.post('/events/new',(req,res)=>{
 
 app.delete('/events/:id',(req,res)=>{
     const {id}=req.params;
+    const email=req.query.email;
     let events = JSON.parse(fs.readFileSync(eventsDataPath, 'utf8'));
     events=events.filter((e)=> e.id !== id);
     fs.writeFileSync(eventsDataPath, JSON.stringify(events, null, 2));
      return res.send(`
         <script>
-        window.location.href="/events";
+        alert("Event Deleted Successfully!");
+        window.location.href="/events?email=${email}";
         </script>
      `);
 })
@@ -325,6 +327,13 @@ app.get('/alumnidashboard', (req, res) => {
     });
 });
 
+app.get('/eventsA',(req,res)=>{
+    const email = req.query.email;
+    const collageEmail=req.query.collageEmail;
+    let events = JSON.parse(fs.readFileSync(eventsDataPath, 'utf8'));
+    res.render("eventsA",{events,email,collageEmail});
+})
+
 app.get("/jobsA",(req,res)=>{
     const email=req.query.email;
     const collageEmail=req.query.collageEmail;
@@ -341,7 +350,7 @@ app.get("/jobsA/new",(req,res)=>{
 })
 
 app.post("/jobsA/new",(req,res)=>{
-    const email=req.body.email;
+    const email=req.query.email;
     const collageEmail=req.query.collageEmail;
     const {title, skills, package, experience, description, location, company} = req.body;
     let jobs = JSON.parse(fs.readFileSync(jobDataPath, 'utf8'));
@@ -363,4 +372,27 @@ app.post("/jobsA/new",(req,res)=>{
             window.location.href="/jobsA?collageEmail=${collageEmail}&email=${email}";
         </script>
     `);
+})
+
+app.get("/searchA",(req,res)=>{
+    const email=req.query.email;
+    const collageEmail=req.query.collageEmail;
+    const result=0;
+    console.log("Hello I am here");
+    res.render("searchA",{result,email,collageEmail});
+})
+
+app.post("/searchA",(req,res)=>{
+    const email=req.query.email;
+    const collageEmail=req.query.collageEmail;
+    const input=req.body.name.toLowerCase().replace(/\s+/g, "");
+    let alumniList = JSON.parse(fs.readFileSync(alumniDataPath, 'utf8'));
+    alumniList=alumniList.filter((a)=>a.collageEmail===collageEmail);
+    const result=alumniList.filter(
+        (a)=>
+            a.name.toLowerCase().replace(/\s+/g, "")===input || 
+            a.passingyear.toLowerCase().replace(/\s+/g, "")===input || 
+            a.email.toLowerCase().replace(/\s+/g, "")===input
+        )
+    res.render("searchA",{result,email,collageEmail});
 })
