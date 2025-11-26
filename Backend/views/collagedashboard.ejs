@@ -17,6 +17,15 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             min-height: 100vh;
             position: relative;
+            animation: fadeInBg 20s infinite alternate;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        @keyframes fadeInBg {
+            0% { background-image: url('gla.webp'); }
+            50% { background-image: url('h-about.jpg'); }
+            100% { background-image: url('gla.webp'); }
         }
 
         body::before {
