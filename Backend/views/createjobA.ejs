@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Job</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 30px 0;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+            position: relative;
+            z-index: 2;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            font-size: 1rem;
+            color: #1a202c;
+            font-weight: 600;
+        }
+
+        input, textarea {
+            width: 100%;
+            margin-top: 8px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 10px rgba(102,126,234,0.4);
+        }
+
+        textarea {
+            resize: none;
+            height: 120px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px 20px;
+            margin-top: 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.6);
+        }
+
+        .back {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .back a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 8px 18px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.2);
+            transition: 0.3s;
+        }
+
+        .back a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        @media(max-width: 768px) {
+            .form-container {
+                margin: 20px;
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Create New Job</h1>
+
+    <div class="form-container">
+        <form action="/jobsA/new?email=<%=email%>&collageEmail=<%=collageEmail%>" method="post">
+
+            <label for="title">Job Title</label>
+            <input type="text" name="title" required>
+
+            <label for="skills">Skills (comma separated)</label>
+            <input type="text" name="skills" placeholder="HTML, CSS, JS, Node.js" required>
+
+            <label for="package">Package (LPA)</label>
+            <input type="number" name="package" min="1" required>
+
+            <label for="experience">Experience Required (Years)</label>
+            <input type="number" name="experience" min="0" required>
+
+            <label for="description">Job Description</label>
+            <textarea name="description" required></textarea>
+
+            <button type="submit">Create Job</button>
+        </form>
+    </div>
+
+    <div class="back">
+        <a href="/jobsA?email=<%=email%>&collageEmail=<%=collageEmail%>">⬅ Back to Jobs</a>
+    </div>
+
+</body>
+</html>

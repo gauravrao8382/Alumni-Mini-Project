@@ -9,10 +9,12 @@ const methodOverride = require("method-override");
 app.use(methodOverride("_method"));
 
 const { v4: uuidv4 } = require("uuid");
+const { console } = require('inspector');
 
 const collageDataPath = path.join(__dirname, './collagedata.json');
 const alumniDataPath = path.join(__dirname,'./alumnidata.json');
 const eventsDataPath = path.join(__dirname,'./eventsdata.json');
+const jobDataPath = path.join(__dirname,'./jobData.json');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -132,6 +134,27 @@ app.get('/events',(req,res)=>{
     res.render("events",{events,email});
 })
 
+app.post('/events/new',(req,res)=>{
+    let {email, eventName, eventDate, eventDesc}=req.body;
+    let events = JSON.parse(fs.readFileSync(eventsDataPath, 'utf8'));
+    let id=uuidv4();
+    const newEvent={
+        email,
+        id,
+        eventName,
+        eventDate,
+        eventDesc
+    }
+    events.push(newEvent);
+    fs.writeFileSync(eventsDataPath, JSON.stringify(events, null, 2));
+    return res.send(`
+        <script>
+            alert("Event Added Successfully!");
+            window.location.href="/events?email=${email}";
+        </script>
+    `);
+})
+
 app.delete('/events/:id',(req,res)=>{
     const {id}=req.params;
     let events = JSON.parse(fs.readFileSync(eventsDataPath, 'utf8'));
@@ -146,10 +169,62 @@ app.delete('/events/:id',(req,res)=>{
 
 app.get("/search",(req,res)=>{
     const email=req.query.email;
-    let alumniList = JSON.parse(fs.readFileSync(alumniDataPath, 'utf8'));
-    res.render("search",{email,alumniList});
+    const result=0;
+    console.log("Hello I am here");
+    res.render("search",{result,email});
 })
 
+app.post("/search",(req,res)=>{
+    const email=req.query.email;
+    const input=req.body.name.toLowerCase().replace(/\s+/g, "");
+    let alumniList = JSON.parse(fs.readFileSync(alumniDataPath, 'utf8'));
+    alumniList=alumniList.filter((a)=>a.collageEmail===email);
+    const result=alumniList.filter(
+        (a)=>
+            a.name.toLowerCase().replace(/\s+/g, "")===input || 
+            a.passingyear.toLowerCase().replace(/\s+/g, "")===input || 
+            a.email.toLowerCase().replace(/\s+/g, "")===input
+        )
+    res.render("search",{result,email});
+})
+
+app.get("/jobs",(req,res)=>{
+    const email=req.query.email;
+    let jobs = JSON.parse(fs.readFileSync(jobDataPath, 'utf8'));
+    jobs=jobs.filter((j)=> j.email === email)
+    console.log(jobs.length);
+    res.render("jobs",{jobs,email});
+})
+
+app.get("/jobs/new",(req,res)=>{
+    const email=req.query.email;
+    res.render("createjob",{email});
+})
+
+app.post("/jobs/new",(req,res)=>{
+    const email=req.query.email;
+    const {title, skills, package, experience, description, location, company} = req.body;
+    let jobs = JSON.parse(fs.readFileSync(jobDataPath, 'utf8'));
+    let id=uuidv4();
+    const newJob={
+        email,
+        title,
+        location,
+        company,
+        skills,
+        package,
+        experience,
+        description,
+    }
+    jobs.push(newJob);
+    fs.writeFileSync(jobDataPath, JSON.stringify(jobs, null, 2));
+    return res.send(`
+        <script>
+            alert("Job Added Successfully!");
+            window.location.href="/jobs?email=${email}";
+        </script>
+    `);
+})
 
 
 
@@ -165,7 +240,7 @@ app.get('/AlumniLogOut', (req, res) => {
 
 app.post('/AlumniRegister', async (req, res) => {
     const { name, collageEmail, collagename
-        , email, password, passingyear } = req.body;
+        , email, password, passingyear, course } = req.body;
 
     let collages = JSON.parse(fs.readFileSync(collageDataPath, 'utf8'));
     
@@ -196,6 +271,7 @@ app.post('/AlumniRegister', async (req, res) => {
         email,
         password: hashedPass,
         passingyear,
+        course,
         image: "/images/default-college.png" // default image
     };
 
@@ -244,97 +320,47 @@ app.get('/alumnidashboard', (req, res) => {
         collageEmail:user.collageEmail,
         email: user.email,
         passingyear: user.passingyear,
-        image: user.image
+        image: user.image,
+        course:user.course
     });
 });
-// ---------------- JOBS SECTION -------------------------
 
+app.get("/jobsA",(req,res)=>{
+    const email=req.query.email;
+    const collageEmail=req.query.collageEmail;
+    let jobs = JSON.parse(fs.readFileSync(jobDataPath, 'utf8'));
+    jobs=jobs.filter((j)=> j.email === collageEmail)
+    console.log(jobs.length);
+    res.render("jobsA",{jobs,email,collageEmail});
+})
 
-// Jobs JSON file
-const jobsDataPath = path.join(__dirname, './jobs.json');
+app.get("/jobsA/new",(req,res)=>{
+    const email=req.query.email;
+    const collageEmail=req.query.collageEmail;
+    res.render("createjobA",{email,collageEmail});
+})
 
-// Get all jobs
-app.get('/jobs', (req, res) => {
-    let jobs = JSON.parse(fs.readFileSync(jobsDataPath, 'utf8'));
-    res.render('jobs', { jobs });
-});
-
-// Add new job
-app.post('/jobs', (req, res) => {
-    let { title, company, salary, type, description } = req.body;
-
-    let jobs = JSON.parse(fs.readFileSync(jobsDataPath, 'utf8'));
-    let id = uuidv4();
-
-    const newJob = {
-        id,
+app.post("/jobsA/new",(req,res)=>{
+    const email=req.body.email;
+    const collageEmail=req.query.collageEmail;
+    const {title, skills, package, experience, description, location, company} = req.body;
+    let jobs = JSON.parse(fs.readFileSync(jobDataPath, 'utf8'));
+    const newJob={
+        email:collageEmail,
         title,
+        location,
         company,
-        salary,
-        type,
-        description
-    };
-
+        skills,
+        package,
+        experience,
+        description,
+    }
     jobs.push(newJob);
-    fs.writeFileSync(jobsDataPath, JSON.stringify(jobs, null, 2));
-
-    res.send(`
+    fs.writeFileSync(jobDataPath, JSON.stringify(jobs, null, 2));
+    return res.send(`
         <script>
             alert("Job Added Successfully!");
-            window.location.href="/jobs";
+            window.location.href="/jobsA?collageEmail=${collageEmail}&email=${email}";
         </script>
     `);
-});
-
-// Delete job
-app.delete('/jobs/:id', (req, res) => {
-    const { id } = req.params;
-
-    let jobs = JSON.parse(fs.readFileSync(jobsDataPath, 'utf8'));
-    jobs = jobs.filter(job => job.id !== id);
-
-    fs.writeFileSync(jobsDataPath, JSON.stringify(jobs, null, 2));
-
-    res.send(`
-        <script>
-            alert("Job Deleted!");
-            window.location.href="/jobs";
-        </script>
-    `);
-});
-
-// Edit job (GET form)
-app.get('/jobs/edit/:id', (req, res) => {
-    const { id } = req.params;
-    let jobs = JSON.parse(fs.readFileSync(jobsDataPath, 'utf8'));
-    const job = jobs.find(j => j.id === id);
-
-    res.render('editjob', { job });
-});
-
-// Edit job (POST form)
-app.post('/jobs/edit/:id', (req, res) => {
-    const { id } = req.params;
-    const { title, company, salary, type, description } = req.body;
-
-    let jobs = JSON.parse(fs.readFileSync(jobsDataPath, 'utf8'));
-    const jobIndex = jobs.findIndex(j => j.id === id);
-
-    jobs[jobIndex] = {
-        id,
-        title,
-        company,
-        salary,
-        type,
-        description
-    };
-
-    fs.writeFileSync(jobsDataPath, JSON.stringify(jobs, null, 2));
-
-    res.send(`
-        <script>
-            alert("Job Updated Successfully!");
-            window.location.href="/jobs";
-        </script>
-    `);
-});
+})

@@ -34,13 +34,14 @@
 
         h1{
             text-align: center;
-            margin: 30px 0;
+            margin: 20px 0 40px 0;
             color: white;
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            font-size: 3rem;
+            font-weight: 800;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.3), 0 0 30px rgba(255,255,255,0.2);
             position: relative;
             z-index: 1;
+            letter-spacing: -1px;
         }
 
         .header{
@@ -54,8 +55,10 @@
             font-size:18px;
             font-weight:600;
             box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-            position: relative;
-            z-index: 10;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
         }
 
         .header-left{
@@ -106,39 +109,220 @@
             z-index: 1;
         }
 
-        .event-card{
-            background: rgba(255, 255, 255, 0.98);
-            padding: 25px;
-            margin-bottom: 20px;
-            border-radius: 15px;
-            border-left: 5px solid #667eea;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        .back-btn-container{
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-back{
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .btn-back:hover{
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .event-card{
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%);
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25), 0 5px 15px rgba(0,0,0,0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .event-card::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .event-card:hover::before{
+            width: 8px;
         }
 
         .event-card:hover{
-            transform: translateY(-5px) translateX(5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.35), 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .event-header{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .event-title-section{
+            flex: 1;
         }
 
         .event-card h3{
-            margin-bottom: 10px;
+            margin: 0 0 8px 0;
             color: #1a202c;
+            font-size: 1.8rem;
+            font-weight: 800;
+            line-height: 1.3;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .event-id{
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            text-transform: uppercase;
+        }
+
+        .event-info-grid{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .info-item{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .info-item-icon{
             font-size: 1.5rem;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .info-item-text{
+            flex: 1;
+        }
+
+        .info-item-label{
+            font-size: 0.7rem;
+            color: #718096;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .info-item-value{
+            font-size: 0.95rem;
+            color: #2d3748;
             font-weight: 700;
         }
 
-        .event-card small{
-            color: #667eea;
-            font-size: 1rem;
-            font-weight: 600;
+        .event-desc{
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+            position: relative;
         }
 
-        .event-card p{
-            margin-top: 12px;
+        .event-desc::before{
+            content: '📝';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            opacity: 0.3;
+        }
+
+        .event-desc p{
+            margin: 0;
             color: #4a5568;
-            font-size: 1rem;
-            line-height: 1.6;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        .event-actions{
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .btn-delete{
+            padding: 16px 28px;
+            flex: 1;
+            background: linear-gradient(135deg, #fc8181 0%, #e53e3e 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(229, 62, 62, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-delete:hover{
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(229, 62, 62, 0.6);
+            background: linear-gradient(135deg, #f56565 0%, #c53030 100%);
+        }
+
+        .btn-delete:active{
+            transform: translateY(-1px);
         }
 
         button{
@@ -165,6 +349,260 @@
             transform: translateY(0);
         }
 
+        .empty-state{
+            text-align: center;
+            padding: 80px 40px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+            border: 2px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .empty-state h2{
+            color: #1a202c;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .empty-state p{
+            color: #4a5568;
+            font-size: 1.2rem;
+            font-weight: 500;
+            line-height: 1.8;
+        }
+
+        .empty-state-icon{
+            font-size: 5rem;
+            margin-bottom: 30px;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ADD EVENT BUTTON */
+        .add-event-btn-container{
+            max-width: 1000px;
+            margin: 0 auto 30px auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .btn-add-event{
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(72, 187, 120, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-add-event:hover{
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(72, 187, 120, 0.6);
+            background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+        }
+
+        /* MODAL STYLES */
+        .modal-overlay{
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.active{
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content{
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .modal-header h2{
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
+        }
+
+        .close-btn{
+            background: #e2e8f0;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: #4a5568;
+        }
+
+        .close-btn:hover{
+            background: #cbd5e0;
+            transform: rotate(90deg);
+        }
+
+        .form-group{
+            margin-bottom: 25px;
+        }
+
+        .form-group label{
+            display: block;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group textarea{
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: #f7fafc;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus{
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea{
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-actions{
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn-submit{
+            flex: 1;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-submit:hover{
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-cancel{
+            flex: 1;
+            padding: 16px 24px;
+            background: #e2e8f0;
+            color: #4a5568;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cancel:hover{
+            background: #cbd5e0;
+            transform: translateY(-2px);
+        }
+
         @media (max-width: 768px) {
             h1{
                 font-size: 2rem;
@@ -177,29 +615,186 @@
             #eventContainer{
                 padding: 0 20px;
             }
+
+            .add-event-btn-container{
+                padding: 0 20px;
+            }
+
+            .modal-content{
+                padding: 30px 20px;
+            }
+
+            .modal-header h2{
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <h1>All College Events</h1>
-
-    <div id="eventContainer">
-        <%for(let event of events){%>
-            <%if(email === event.email){%>
-                 <div class="event-card">
-                    <p>Event id: <%=event.id%></p>
-                    <h3><%=event.eventName%></h3>
-                    <small><%=event.eventDate%></small>
-                    <p><%=event.eventDesc%></p> 
-                    <form action="/events/<%=event.id%>?_method=DELETE" method="post">
-                        <button type="submit">Delete</button>
-                    </form>  
-                </div>
-                
-            <%}}%> 
+    <div class="header">
+        <div class="header-left">
+            <h2 style="margin: 0; font-size: 1.5rem;">🎓 Alumni Portal</h2>
+        </div>
+        <div class="header-left">
+            <a href="/">Home</a>
+            <a href="/events">Events</a>
+        </div>
     </div>
 
+    <div class="back-btn-container">
+        <a href="/" class="btn-back">← Back to Home</a>
+    </div>
+
+    <h1>🎉 All College Events</h1>
+
+    <!-- ADD EVENT BUTTON -->
+    <div class="add-event-btn-container">
+        <button class="btn-add-event" onclick="openModal()">
+            ➕ Add New Event
+        </button>
+    </div>
+
+    <!-- ADD EVENT MODAL -->
+    <div class="modal-overlay" id="eventModal" onclick="closeModalOnOverlay(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2>➕ Create New Event</h2>
+                <button class="close-btn" onclick="closeModal()">×</button>
+            </div>
+            <form action="/events/new" method="post" id="eventForm">
+                <input type="hidden" name="redirectTo" value="events">
+                <div class="form-group">
+                    <label for="email">College Email *</label>
+                    <input type="email" id="email" name="email" placeholder="Enter college email" value="<%=email%>" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventName">Event Name *</label>
+                    <input type="text" id="eventName" name="eventName" placeholder="Enter event name" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventDate">Event Date *</label>
+                    <input type="date" id="eventDate" name="eventDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventDesc">Event Description *</label>
+                    <textarea id="eventDesc" name="eventDesc" placeholder="Enter event description" required></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">✅ Create Event</button>
+                    <button type="button" class="btn-cancel" onclick="closeModal()">❌ Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="eventContainer">
+        <% 
+            let hasEvents = false;
+            for(let event of events){
+                if(email === event.email){
+                    hasEvents = true;
+                    break;
+                }
+            }
+        %>
+        
+        <%if(!hasEvents){%>
+            <div class="empty-state">
+                <div class="empty-state-icon">📅</div>
+                <h2>No Events Found</h2>
+                <p>You haven't created any events yet. Create your first event to get started!</p>
+            </div>
+        <%}%>
+
+        <%for(let event of events){%>
+            <%if(email === event.email){%>
+                <div class="event-card">
+                    <div class="event-header">
+                        <div class="event-title-section">
+                            <span class="event-id">🆔 ID: <%=event.id%></span>
+                            <h3><%=event.eventName%></h3>
+                        </div>
+                    </div>
+                    
+                    <div class="event-info-grid">
+                        <div class="info-item">
+                            <div class="info-item-icon">📅</div>
+                            <div class="info-item-text">
+                                <div class="info-item-label">Event Date</div>
+                                <div class="info-item-value"><%=event.eventDate%></div>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-item-icon">✉️</div>
+                            <div class="info-item-text">
+                                <div class="info-item-label">Created By</div>
+                                <div class="info-item-value"><%=event.email%></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event-desc">
+                        <p><%=event.eventDesc%></p>
+                    </div>
+
+                    <div class="event-actions">
+                        <form action="/events/<%=event.id%>?_method=DELETE" method="post" style="flex: 1; margin: 0;">
+                            <button type="submit" class="btn-delete">🗑️ Delete Event</button>
+                        </form>
+                    </div>
+                </div>
+            <%}%>
+        <%}%> 
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('eventModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('eventModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            document.getElementById('eventForm').reset();
+        }
+
+        function closeModalOnOverlay(event) {
+            if (event.target.classList.contains('modal-overlay')) {
+                closeModal();
+            }
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Set min date to today
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.getElementById('eventDate');
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.setAttribute('min', today);
+            }
+        });
+
+        // Handle form submission
+        document.getElementById('eventForm').addEventListener('submit', function(e) {
+            const form = this;
+            const submitBtn = form.querySelector('.btn-submit');
+            const originalText = submitBtn.innerHTML;
+            
+            // Show loading state
+            submitBtn.innerHTML = '⏳ Creating...';
+            submitBtn.disabled = true;
+            
+            // Form will submit normally, backend will handle redirect
+        });
+    </script>
 
 </body>
 </html>

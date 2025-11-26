@@ -108,13 +108,31 @@
         .btn-edit { background: #ff9800; }
         .btn-delete { background: #d32f2f; }
 
-        /* EMPTY STATE TEXT */
 
         .no-jobs {
             text-align: center;
             color: white;
             font-size: 20px;
             margin-top: 40px;
+        }
+        .back {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .back a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 8px 18px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.2);
+            transition: 0.3s;
+        }
+
+        .back a:hover {
+            background: rgba(255,255,255,0.3);
         }
     </style>
 </head>
@@ -124,7 +142,7 @@
     <!-- HEADER -->
     <div class="header">
         <h2>Job Listings</h2>
-        <a href="/jobs/add">+ Add New Job</a>
+        <a href="/jobs/new?email=<%=email%>">+ Add New Job</a>
     </div>
 
     <div class="container">
@@ -136,11 +154,13 @@
         <!-- GRID OF CARDS -->
         <div class="grid">
 
-            <% jobs.forEach(job => { %>
+            <% for(let job of jobs){ %>
+            <% if(email === job.email){ %>
                 <div class="job-card">
                     
                     <div class="job-title"><%= job.title %></div>
-
+                    <div class="job-info"><strong>Skills:</strong> <%= job.skills %></div>
+                    <div class="job-info"><strong>Experience:</strong> <%= job.experience %></div>
                     <div class="job-info"><strong>Company:</strong> <%= job.company %></div>
                     <div class="job-info"><strong>Location:</strong> <%= job.location %></div>
                     <div class="job-info"><strong>Salary:</strong> <%= job.salary %></div>
@@ -155,13 +175,17 @@
                             <button class="btn btn-edit">Edit</button>
                         </a>
                         <form action="/jobs/<%= job.id %>?_method=DELETE" method="POST" style="display:inline;">
-                            <button class="btn btn-delete" onclick="return confirm('Delete this job?')">Delete</button>
+                            <button class="btn btn-delete">Delete</button>
                         </form>
                     </div>
 
                 </div>
-            <% }) %>
+            <% } %>
+        <% } %>
 
+        </div>
+        <div class="back">
+            <a  href="/collagedashboard?email=<%=email%>">⬅ Back to dashboard</a>
         </div>
 
     </div>

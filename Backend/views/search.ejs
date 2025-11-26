@@ -226,6 +226,25 @@
             border-radius: 12px;
             padding: 15px;
         }
+        .back {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .back a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 8px 18px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.2);
+            transition: 0.3s;
+        }
+
+        .back a:hover {
+            background: rgba(255,255,255,0.3);
+        }
         @media (max-width: 768px) {
             .header{
                 flex-direction: column;
@@ -257,17 +276,22 @@
             </form>
         </div>
         
-        <% for (let alumni of alumniList){%>
-            <% if(alumni.collageEmail === email) {%>
+        <% if(result.length > 0) {%>
+        <% for (let alumni of result){%>
         <div id="searchResults" class="search-results-list">
             <div class="alumni">
                 <p>Name: <%= alumni.name %></p>
+                <p>Course: <%= alumni.course %></p>
                 <p>Passing year: <%= alumni.passingyear %></p>
                 <p>Email: <%=alumni.email%></p>
             </div>
         </div>
-        <%}}%>
+        <%}%>
+        <%}%>
     </div>
+    <div class="back">
+            <a href="/collagedashboard?email=<%=email%>">⬅ Back to dashboard</a>
+        </div>
 </div>
 
 
