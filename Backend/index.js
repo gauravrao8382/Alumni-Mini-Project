@@ -134,6 +134,27 @@ app.get('/events',(req,res)=>{
     res.render("events",{events,email});
 })
 
+app.post('/events/new',(req,res)=>{
+    let {email, eventName, eventDate, eventDesc}=req.body;
+    let events = JSON.parse(fs.readFileSync(eventsDataPath, 'utf8'));
+    let id=uuidv4();
+    const newEvent={
+        email,
+        id,
+        eventName,
+        eventDate,
+        eventDesc
+    }
+    events.push(newEvent);
+    fs.writeFileSync(eventsDataPath, JSON.stringify(events, null, 2));
+    return res.send(`
+        <script>
+            alert("Event Added Successfully!");
+            window.location.href="/events?email=${email}";
+        </script>
+    `);
+})
+
 app.delete('/events/:id',(req,res)=>{
     const {id}=req.params;
     let events = JSON.parse(fs.readFileSync(eventsDataPath, 'utf8'));
