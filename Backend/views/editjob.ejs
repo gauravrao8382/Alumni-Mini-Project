@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Job</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Poppins, sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            background: #f5f6ff;
+            font-size: 15px;
+            outline: none;
+            margin-bottom: 18px;
+        }
+
+        textarea {
+            height: 120px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #6a11cb;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<%- include('partials/header') %>
+
+
+<div class="container">
+    <h2>Edit Job</h2>
+
+    <form action="/jobs/<%= job.id %>?_method=PUT" method="POST">
+
+        <input type="text" name="title" value="<%= job.title %>" required>
+
+        <input type="text" name="company" value="<%= job.company %>" required>
+
+        <input type="text" name="location" value="<%= job.location %>" required>
+
+        <input type="text" name="salary" value="<%= job.salary %>" required>
+
+        <textarea name="description" required><%= job.description %></textarea>
+
+        <button class="btn">Save Changes</button>
+    </form>
+</div>
+
+</body>
+</html>

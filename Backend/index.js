@@ -203,12 +203,14 @@ app.get("/jobs/new",(req,res)=>{
 
 app.post("/jobs/new",(req,res)=>{
     const email=req.query.email;
-    const {title, skills, package, experience, description} = req.body;
+    const {title, skills, package, experience, description, location, company} = req.body;
     let jobs = JSON.parse(fs.readFileSync(jobDataPath, 'utf8'));
     let id=uuidv4();
     const newJob={
         email,
         title,
+        location,
+        company,
         skills,
         package,
         experience,
@@ -323,42 +325,13 @@ app.get('/alumnidashboard', (req, res) => {
     });
 });
 
-app.get('/eventsA',(req,res)=>{
-    const collageEmail = req.query.collageEmail;
-    const email = req.query.email;
-    let events = JSON.parse(fs.readFileSync(eventsDataPath, 'utf8'));
-    res.render("eventsA",{events,collageEmail,email});
-})
-
-app.get("/searchA",(req,res)=>{
-    const email=req.query.email;
-    const collageEmail=req.query.collageEmail;
-    const result=0;
-    res.render("searchA",{result,email,collageEmail});
-})
-
-app.post("/searchA",(req,res)=>{
-    const email=req.query.email;
-    const collageEmail=req.query.collageEmail;
-    const input=req.body.name.toLowerCase().replace(/\s+/g, "");
-    
-    let alumniList = JSON.parse(fs.readFileSync(alumniDataPath, 'utf8'));
-    alumniList=alumniList.filter((a)=>a.collageEmail===collageEmail);
-    const result=alumniList.filter(
-        (a)=>
-            a.name.toLowerCase().replace(/\s+/g, "")===input || 
-            a.passingyear.toLowerCase().replace(/\s+/g, "")===input || 
-            a.email.toLowerCase().replace(/\s+/g, "")===input
-        )
-    res.render("searchA",{result,email,collageEmail});
-})
-
 app.get("/jobsA",(req,res)=>{
     const email=req.query.email;
     const collageEmail=req.query.collageEmail;
     let jobs = JSON.parse(fs.readFileSync(jobDataPath, 'utf8'));
     jobs=jobs.filter((j)=> j.email === collageEmail)
-    res.render("jobsA",{jobs,collageEmail,email});
+    console.log(jobs.length);
+    res.render("jobsA",{jobs,email,collageEmail});
 })
 
 app.get("/jobsA/new",(req,res)=>{
@@ -368,13 +341,15 @@ app.get("/jobsA/new",(req,res)=>{
 })
 
 app.post("/jobsA/new",(req,res)=>{
-    const email=req.query.email;
+    const email=req.body.email;
     const collageEmail=req.query.collageEmail;
-    const {title, skills, package, experience, description} = req.body;
+    const {title, skills, package, experience, description, location, company} = req.body;
     let jobs = JSON.parse(fs.readFileSync(jobDataPath, 'utf8'));
     const newJob={
-        email: collageEmail,
+        email:collageEmail,
         title,
+        location,
+        company,
         skills,
         package,
         experience,
@@ -385,7 +360,7 @@ app.post("/jobsA/new",(req,res)=>{
     return res.send(`
         <script>
             alert("Job Added Successfully!");
-            window.location.href="/jobsA?email=${email}&collageEmail=${collageEmail}";
+            window.location.href="/jobsA?collageEmail=${collageEmail}&email=${email}";
         </script>
     `);
 })
