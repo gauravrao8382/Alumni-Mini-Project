@@ -14,5 +14,15 @@
     "package": "6",
     "experience": "0",
     "description": "Posted By VVDN Technology"
+  },
+  {
+    "email": "glauniversity@gmail.com",
+    "title": "ML Engineer",
+    "location": "Hyderabad",
+    "company": "Google",
+    "skills": "Python",
+    "package": "10",
+    "experience": "2",
+    "description": "To develop ML Model"
   }
 ]

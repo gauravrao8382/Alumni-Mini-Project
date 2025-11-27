@@ -309,22 +309,26 @@
 
     <!-- SECTIONS GRID -->
     <div class="sections">
-        <!-- ADD EVENT -->
-        <form action="/collagedashboard" method="post">
-            <div class="card">
-            <h2>Add Event</h2>
-            <input required type="email" id="email" name="email" placeholder="Enter collage email ">
-            <input required name="eventName" type="text" id="eventName" placeholder="Event Name">
-            <input required name="eventDate" type="date" id="eventDate">
-            <textarea required name="eventDesc" id="eventDesc" placeholder="Event Description"></textarea>
-            <button type="submit">Add Event</button>
-        </div>
-        </form>
-
-        <!-- POSTED EVENTS -->
+        
         <div class="card">
-            <h2>Posted Events</h2>
-            <div id="eventList"></div>
+            <h2>Events</h2>
+            <div id="eventList">
+                <div class="event-item"><b>Orientation</b> — 01-08-2025</div>
+                <div class="event-item"><b>Coding Hackathon</b> — 15-09-2025</div>
+                <div class="event-item"><b>Tech-Fest</b> — 01-08-2025</div>
+                <div class="event-item"><b>Sports-Meet</b> — 15-09-2025</div>
+            </div>
+        </div>
+
+        <!-- VIEW JOBS -->
+        <div class="card">
+            <h2>Posted Jobs</h2>
+            <div id="jobList">
+                <div class="job-item"><b>Frontend Developer</b> — CSE 2024</div>
+                <div class="job-item"><b>Data Analyst</b> — IT 2023</div>
+                <div class="job-item"><b>Backend Developer</b> — CSE 2022</div>
+                <div class="job-item"><b>ML Engineer</b> — IT 2023</div>
+            </div>
         </div>
 
     </div>
